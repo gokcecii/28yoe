@@ -36,8 +36,7 @@
             font-size: 0.95rem; 
             color: #888; 
             border-top: 1px solid #222; 
-            padding-top: 20px; 
-            font-style: italic; 
+            padding-top: 20px;  
         }
         
         /* lightbox büyütme ekranı */
@@ -54,16 +53,18 @@
     <!-- başlık ve müzik sayfa düzeni -->
     <div style="display: flex; justify-content: space-between; align-items: flex-start; max-width: 1200px; margin: 0 auto 40px auto; text-align: left;">
         <div>
-            <h1 style="margin: 0; font-weight: normal; letter-spacing: 1px;">discover the harmonious traces of your moments filled with attention, curiosity, and chatter </h1>
-            <div class="alt-baslik" style="margin: 5px 0 0 0;">as we mark the 28th year of my presence on planet earth.</div>
+            <h1 style="margin: 0; font-weight: normal; letter-spacing: 1px;">selamcikkkkkkkk</h1>
+            <div class="alt-baslik" style="margin: 5px 0 0 0;">28 yaş hatırasıııı</div>
         </div>
 
-        <!-- SoundCloud oynatıcısı -->
+        <!--  MP3 oynatıcı -->
         <div style="margin: 0;">
             <button id="muzik-butonu" onclick="muzikCal()" style="background: none; color: #888; text-decoration: none; font-size: 1rem; border: 1px solid #333; padding: 8px 15px; letter-spacing: 1px; cursor: pointer; font-family: 'Garamond', serif; transition: 0.2s;" onmouseover="this.style.color='#fff'; this.style.borderColor='#fff'" onmouseout="this.style.color='#888'; this.style.borderColor='#333'">müzikçik</button>
-              
-            <!-- Kokoroko - We Give Thanks Şarkısının Resmi Oynatıcı Linki -->
-            <iframe id="sc-player" width="1" height="1" style="display:none;" scrolling="no" frameborder="no" allow="autoplay" src="https://on.soundcloud.com/OTTJQsn6Rh7gxZDrW8"></iframe>
+            
+            <!-- ses dosyası burada -->
+            <audio id="yerel-ses" loop style="display: none;">
+                <source src="arka-plan.mp3" type="audio/mpeg">
+            </audio>
         </div>
     </div>
 
@@ -92,8 +93,8 @@
         let mevcutIndeks = -1;
 
         function muzikCal() {
-            const player = document.getElementById("sc-player");
-            player.contentWindow.postMessage('{"method":"play"}', '*');
+            const ses = document.getElementById("yerel-ses");
+            ses.play();
         }
         
         function acLightbox(indeks) {
