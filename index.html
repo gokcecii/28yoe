@@ -3,58 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>deneme-hatıra</title>
+    <title>deneme hatıralar</title>
     <style>
-        body { font-family: sans-serif; background: #f0f2f5; margin: 0; padding: 20px 20px 80px 20px; text-align: center; }
-        h1 { color: #333; margin-bottom: 5px; }
-        .alt-baslik { color: #666; font-size: 1.1rem; margin-bottom: 30px; }
+        /* Siyah Tema ve Minimal Garamond Fontu */
+        body { 
+            font-family: "Garamond", "Georgia", serif; 
+            background: #000000; 
+            color: #ffffff; 
+            margin: 0; 
+            padding: 20px 20px 100px 20px; 
+            text-align: center; 
+        }
+        h1 { font-weight: normal; margin-bottom: 5px; letter-spacing: 1px; }
+        .alt-baslik { color: #888; font-size: 1.1rem; margin-bottom: 20px; font-style: italic; }
         
-        /* Müzik Kutusu */
-        .muzik-kutusu { margin: 20px auto; background: #fff; padding: 10px; display: inline-block; border-radius: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        /* YouTube Oynatıcı */
+        .muzik-kutusu { margin: 10px auto 40px auto; max-width: 360px; background: #111; padding: 8px; border-radius: 0px; }
+        .muzik-kutusu iframe { width: 100%; height: 80px; border: none; }
         
-        /* Galeri Düzeni */
-        .galeri { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
-        .foto-kart { background: #fff; padding: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; cursor: pointer; }
-        .foto-kart:hover { transform: scale(1.03); }
-        img { width: 100%; height: auto; border-radius: 4px; object-fit: cover; }
+        /* Çerçevesiz, Ayrık ve Sivri Köşeli Galeri */
+        .galeri { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
+        .foto-kart { background: none; padding: 0; border-radius: 0px; border: none; transition: transform 0.2s; cursor: pointer; }
+        .foto-kart:hover { transform: scale(1.02); }
+        img { width: 100%; height: auto; border-radius: 0px; object-fit: cover; display: block; }
         
-        /* Katılımcı Satırı */
-        .katilimcilar { margin-top: 5px; font-size: 0.9rem; color: #555; font-style: italic; border-top: 1px solid #eee; padding-top: 5px; }
+        /* Sağ Altta Duran Katılımcı Kutusu */
+        .katilimcilar { 
+            position: relative; 
+            max-width: 1200px; 
+            margin: 50px auto 0 auto; 
+            text-align: right; 
+            font-size: 0.95rem; 
+            color: #888; 
+            border-top: 1px solid #222; 
+            padding-top: 20px; 
+        }
         
-        /* Tıklayınca Büyüyen Ekran (Lightbox) */
-        .lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
-        .lightbox img { max-width: 90%; max-height: 90%; width: auto; object-fit: contain; box-shadow: 0 0 20px rgba(21, 21, 21, 0.6); }
+        /* Lightbox Büyütme Ekranı */
+        .lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; }
+        .lightbox img { max-width: 90%; max-height: 90%; width: auto; object-fit: contain; border-radius: 0px; }
         .lightbox:target { display: flex; }
-        .kapat-butonu { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; text-decoration: none; font-weight: bold; }
+        .kapat-butonu { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; text-decoration: none; font-weight: 100; }
     </style>
 </head>
 <body>
 
-    <h1>Hatıralar</h1>
-    <div class="alt-baslik">gelen bebişlere teşekkür ederimmmmmmm</div>
-    
-    <!-- YouTube Arka Plan Müziği -->
+    <!-- Başlık ve Açıklama -->
+    <h1>denemecikkkkkk</h1>
+    <div class="alt-baslik">28 yaş hatırasııııııı.</div>
+
+    <!-- YouTube Müzik Kutusu -->
     <div class="muzik-kutusu">
-        <iframe src="https://youtube.com" frameborder="0" allow="clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://youtube.com" allow="autoplay; encrypted-media"></iframe>
     </div>
 
     <!-- Galeri Alanı -->
     <div class="galeri">
-        <!-- Fotoğraflar (Tıklayınca büyümesi için her resme benzersiz bir id verdik) -->
-        <div class="foto-kart" onclick="window.location.hash='img1'"><img src="saint-moritz-1929.jpg!Large.jpg"></div>
-        <div class="foto-kart" onclick="window.location.hash='img2'"><img src="sleeping-woman-1935.jpg!Large.jpg"></div>
-        <div class="foto-kart" onclick="window.location.hash='img3'"><img src="the-girls.jpg!Large.jpg"></div>
+        <div class="foto-kart" onclick="acLightbox(0)"><img src="saint-moritz-1929.jpg!Large.jpg"></div>
+        <div class="foto-kart" onclick="acLightbox(1)"><img src="sleeping-woman-1935.jpg!Large.jpg"></div>
+        <div class="foto-kart" onclick="acLightbox(2)"><img src="the-girls.jpg!Large.jpg"></div>
     </div>
 
-    <!-- Büyük Görsel Ekranları (Lightbox Altyapısı - Saf Açık Kaynak Mantığı) -->
-    <div id="img1" class="lightbox"><a href="#" class="kapat-butonu">&times;</a><img src="saint-moritz-1929.jpg!Large.jpg"></div>
-    <div id="img2" class="lightbox"><a href="#" class="kapat-butonu">&times;</a><img src="sleeping-woman-1935.jpg!Large.jpg"></div>
-    <div id="img3" class="lightbox"><a href="#" class="kapat-butonu">&times;</a><img src="the-girls.jpg!Large.jpg"></div>
+    <!-- Dinamik Büyüyen Ekran (Tek Bir Ortak Kutuya İndirgedik) -->
+    <div id="galeri-lightbox" class="lightbox" onclick="kapatLightbox(event)">
+        <a href="javascript:void(0)" class="kapat-butonu" onclick="kapatLightbox(null)">&times;</a>
+        <img id="lightbox-img" src="">
+    </div>
 
-    <!-- En Alttaki Katılımcı Satırı -->
+    <!-- Sağ Alttaki Katılımcı Satırı -->
     <div class="katilimcilar">
-        <p><strong>teşekkürler:</strong> ayşe fatma hayriye.</p>
-    </p>
+        <p><strong>Katılımcılar:</strong> ayşe fatma hayriye.</p>
+    </div>
+
+    <!-- Klavye ve Geçiş Kontrollerini Sağlayan Akıllı Kodlar -->
+    <script>
+        const fotograflar = ["saint-moritz-1929.jpg!Large.jpg", "sleeping-woman-1935.jpg!Large.jpg", "the-girls.jpg!Large.jpg"];
+        let mevcutIndeks = -1;
+
+        function acLightbox(indeks) {
+            mevcutIndeks = indeks;
+            document.getElementById("lightbox-img").src = fotograflar[mevcutIndeks];
+            document.getElementById("galeri-lightbox").style.display = "flex";
+        }
+
+        function kapatLightbox(e) {
+            if (e === null || e.target.id === "galeri-lightbox") {
+                document.getElementById("galeri-lightbox").style.display = "none";
+                mevcutIndeks = -1;
+            }
+        }
+
+        // Klavye Tuşlarını Dinleyen Fonksiyon (ESC, Sağ ve Sol Ok Tuşları)
+        document.addEventListener("keydown", function(event) {
+            if (mevcutIndeks === -1) return; // Eğer büyük ekran açık değilse çalışma
+
+            if (event.key === "Escape") {
+                kapatLightbox(null);
+            } else if (event.key === "ArrowRight") {
+                // Sağ oka basınca sonraki resme geç
+                mevcutIndeks = (mevcutIndeks + 1) % fotograflar.length;
+                document.getElementById("lightbox-img").src = fotograflar[mevcutIndeks];
+            } else if (event.key === "ArrowLeft") {
+                // Sol oka basınca önceki resme geç
+                mevcutIndeks = (mevcutIndeks - 1 + fotograflar.length) % fotograflar.length;
+                document.getElementById("lightbox-img").src = fotograflar[mevcutIndeks];
+            }
+        });
+    </script>
 
 </body>
 </html>
