@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>deneme hatıralar</title>
+    <title>28 years on earth</title>
     <style>
-        /* Siyah Tema ve Minimal Garamond Fontu */
+        /* black theme and garamond font */
         body { 
             font-family: "Garamond", "Georgia", serif; 
             background: #000000; 
@@ -17,17 +17,17 @@
         h1 { font-weight: normal; margin-bottom: 5px; letter-spacing: 1px; }
         .alt-baslik { color: #888; font-size: 1.1rem; margin-bottom: 20px; font-style: italic; }
         
-        /* Müzik Oynatıcı */
+        /* müzik oynatmaca */
         .muzik-kutusu { margin: 10px auto 40px auto; max-width: 360px; background: #111; padding: 8px; border-radius: 0px; }
         .muzik-kutusu iframe { width: 100%; height: 80px; border: none; }
         
-        /* Çerçevesiz, Ayrık ve Sivri Köşeli Galeri */
+        /* galeri tasarımı estetik */
         .galeri { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
         .foto-kart { background: none; padding: 0; border-radius: 0px; border: none; transition: transform 0.2s; cursor: pointer; }
         .foto-kart:hover { transform: scale(1.02); }
         img { width: 100%; height: auto; border-radius: 0px; object-fit: cover; display: block; }
         
-        /* Sağ Altta Duran Katılımcı Kutusu */
+        /* katılımcı kutusu */
         .katilimcilar { 
             position: relative; 
             max-width: 1200px; 
@@ -39,7 +39,7 @@
             padding-top: 20px; 
         }
         
-        /* Lightbox Büyütme Ekranı */
+        /* lightbox büyütme ekranı */
         .lightbox { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center; }
         .lightbox img { max-width: 90%; max-height: 90%; width: auto; object-fit: contain; border-radius: 0px; }
         .lightbox:target { display: flex; }
@@ -50,19 +50,19 @@
 
 <body>
 
-    <!-- Başlık Sol Üstte, Müzik Sağ Üstte -->
+    <!-- başlık ve müzik sayfa düzeni -->
     <div style="display: flex; justify-content: space-between; align-items: flex-start; max-width: 1200px; margin: 0 auto 40px auto; text-align: left;">
         <div>
             <h1 style="margin: 0; font-weight: normal; letter-spacing: 1px;">selamcikkkkkkkk</h1>
-            <div class="alt-baslik" style="margin: 5px 0 0 0;">28 yaş hatırasıııı</div>
+            <div class="alt-baslik" style="margin: 5px 0 0 0;">discover the harmonious traces of your moments filled with attention, curiosity, and chatter <3  as we mark the 28th year of my presence on planet earth.</div>
         </div>
 
-        <!-- Görünmez SoundCloud Oynatıcısı ve Buton -->
+        <!-- SoundCloud oynatıcısı -->
         <div style="margin: 0;">
             <button id="muzik-butonu" onclick="muzikCal()" style="background: none; color: #888; text-decoration: none; font-size: 1rem; border: 1px solid #333; padding: 8px 15px; letter-spacing: 1px; cursor: pointer; font-family: 'Garamond', serif; transition: 0.2s;" onmouseover="this.style.color='#fff'; this.style.borderColor='#fff'" onmouseout="this.style.color='#888'; this.style.borderColor='#333'">müzikçik</button>
-            
+              
             <!-- Kokoroko - We Give Thanks Şarkısının Resmi Oynatıcı Linki -->
-            <iframe id="sc-player" width="1" height="1" style="display:none;" scrolling="no" frameborder="no" allow="autoplay" src="https://soundcloud.com"></iframe>
+            <iframe id="sc-player" width="1" height="1" style="display:none;" scrolling="no" frameborder="no" allow="autoplay" src="https://soundcloud.com/kokoroko-music/we-give-thanks"></iframe>
         </div>
     </div>
 
@@ -82,7 +82,7 @@
 
     <!-- Sağ Alttaki Katılımcı Satırı -->
     <div class="katilimcilar">
-        <p> ada, aybegüm, azad, gökay, gökçe, juan, leon, luuk, maria, mathis, natalia, paulina, onur, ugo</p>
+        <p><strong>special thanks: </strong> ada, aybegüm, azad, gökay, juan, leon, luuk, maria, mathis, natalia, paulina, püren, onur, ugo</p>
     </div>
 
     <!-- Klavye ve Geçiş Kontrollerini Sağlayan Akıllı Kodlar -->
@@ -92,10 +92,7 @@
 
         function muzikCal() {
             const player = document.getElementById("sc-player");
-            // Mevcut adrese otomatik oynatma (autoplay) komutunu güvenli şekilde ekliyoruz
-            player.src += "&auto_play=true";
-            // Buton basıldıktan sonra ekrandan şıkça silinir
-            document.getElementById("muzik-butonu").style.display = "none";
+            player.contentWindow.postMessage('{"method":"play"}', '*');
         }
         
         function acLightbox(indeks) {
