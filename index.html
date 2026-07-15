@@ -48,18 +48,23 @@
 </head>
 <body>
 
-        <!-- Başlık -->
+<body>
+
+    <!-- Başlık Sol Üstte, Müzik Sağ Üstte -->
     <div style="display: flex; justify-content: space-between; align-items: flex-start; max-width: 1200px; margin: 0 auto 40px auto; text-align: left;">
         <div>
             <h1 style="margin: 0; font-weight: normal; letter-spacing: 1px;">selamcikkkkkkkk</h1>
             <div class="alt-baslik" style="margin: 5px 0 0 0;">28 yaş hatırasıııı</div>
         </div>
-<!-- Sayfa İçinde Çalan  SoundCloud Kutusu -->
+
+        <!-- Görünmez SoundCloud Oynatıcısı ve Buton -->
         <div style="margin: 0;">
             <button id="muzik-butonu" onclick="muzikCal()" style="background: none; color: #888; text-decoration: none; font-size: 1rem; border: 1px solid #333; padding: 8px 15px; letter-spacing: 1px; cursor: pointer; font-family: 'Garamond', serif; transition: 0.2s;" onmouseover="this.style.color='#fff'; this.style.borderColor='#fff'" onmouseout="this.style.color='#888'; this.style.borderColor='#333'">müzikçik</button>
-            <div id="sc-alani" style="display:none;"></div>
-        </div>   
-
+            
+            <!-- Kokoroko - We Give Thanks Şarkısının Resmi Oynatıcı Linki -->
+            <iframe id="sc-player" width="1" height="1" style="display:none;" scrolling="no" frameborder="no" allow="autoplay" src="https://soundcloud.com"></iframe>
+        </div>
+    </div>
 
 
     <!-- Galeri Alanı -->
@@ -86,10 +91,13 @@
         let mevcutIndeks = -1;
 
         function muzikCal() {
-            // Butona basılınca çalışan gizli oynatıcı kodu
-            document.getElementById("sc-alani").innerHTML = '<iframe width="1" height="1" frameborder="no" allow="autoplay" src="https://soundcloud.com"></iframe>';
+            const player = document.getElementById("sc-player");
+            // Mevcut adrese otomatik oynatma (autoplay) komutunu güvenli şekilde ekliyoruz
+            player.src += "&auto_play=true";
+            // Buton basıldıktan sonra ekrandan şıkça silinir
             document.getElementById("muzik-butonu").style.display = "none";
         }
+        
         function acLightbox(indeks) {
             mevcutIndeks = indeks;
             document.getElementById("lightbox-img").src = fotograflar[mevcutIndeks];
