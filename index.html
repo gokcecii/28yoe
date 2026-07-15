@@ -85,6 +85,11 @@
         const fotograflar = ["saint-moritz-1929.jpg!Large.jpg", "sleeping-woman-1935.jpg!Large.jpg", "the-girls.jpg!Large.jpg"];
         let mevcutIndeks = -1;
 
+        function muzikCal() {
+            // Butona basılınca çalışan gizli oynatıcı kodu
+            document.getElementById("sc-alani").innerHTML = '<iframe width="1" height="1" frameborder="no" allow="autoplay" src="https://soundcloud.com"></iframe>';
+            document.getElementById("muzik-butonu").style.display = "none";
+        }
         function acLightbox(indeks) {
             mevcutIndeks = indeks;
             document.getElementById("lightbox-img").src = fotograflar[mevcutIndeks];
