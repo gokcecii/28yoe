@@ -23,9 +23,9 @@
         
         /* galeri tasarımı estetik */
         .galeri { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; }
-        .foto-kart { background: none; padding: 0; border-radius: 0px; border: none; transition: transform 0.2s; cursor: pointer; }
+        .foto-kart { background: #111; min-height: 250px; padding: 0; border-radius: 0px; border: none; transition: transform 0.2s; cursor: pointer; }
         .foto-kart:hover { transform: scale(1.02); }
-        img { width: 100%; height: auto; border-radius: 0px; object-fit: cover; display: block; }
+        img { width: 100%; height: 100%; border-radius: 0px; object-fit: cover; display: block; }
         
         /* katılımcı kutusu */
         .katilimcilar { 
@@ -48,13 +48,11 @@
 </head>
 <body>
 
-<body>
-
     <!-- başlık ve müzik sayfa düzeni -->
     <div style="display: flex; justify-content: space-between; align-items: flex-start; max-width: 1200px; margin: 0 auto 40px auto; text-align: left;">
         <div>
-            <h1 style="margin: 0; font-weight: normal; letter-spacing: 1px;">selamcikkkkkkkk</h1>
-            <div class="alt-baslik" style="margin: 5px 0 0 0;">discover the harmonious traces of your moments filled with attention, curiosity, and chatter as we mark the 28th year of my presence on planet earth.</div>
+            <h1 style="margin: 0; font-weight: normal; letter-spacing: 1px;">snippets, 2026</h1>
+            <div class="alt-baslik" style="margin: 5px 0 0 0; max-width: 800px;">discover the harmonious traces of your moments filled with attention, curiosity, and chatter as we mark the 28th year of my presence on planet earth.</div>
         </div>
 
         <!--  MP3 oynatıcı -->
@@ -62,12 +60,11 @@
             <button id="muzik-butonu" onclick="muzikCal()" style="background: none; color: #888; text-decoration: none; font-size: 1rem; border: 1px solid #333; padding: 8px 15px; letter-spacing: 1px; cursor: pointer; font-family: 'Garamond', serif; transition: 0.2s;" onmouseover="this.style.color='#fff'; this.style.borderColor='#fff'" onmouseout="this.style.color='#888'; this.style.borderColor='#333'">müzikçik</button>
             
             <!-- ses dosyası burada -->
-            <audio id="yerel-ses" loop style="display: none;">
+            <audio id="yerel-ses" loop>
                 <source src="arka-plan.mp3" type="audio/mpeg">
             </audio>
         </div>
     </div>
-
 
     <!-- gallery -->
     <div class="galeri">
@@ -100,7 +97,22 @@
 
         function muzikCal() {
             const ses = document.getElementById("yerel-ses");
-            ses.play();
+            const buton = document.getElementById("muzik-butonu");
+            
+            if (ses.paused) {
+                ses.play().then(() => {
+                    buton.textContent = "duraklat";
+                    buton.style.color = "#fff";
+                    buton.style.borderColor = "#fff";
+                }).catch(error => {
+                    console.log("Oynatma engellendi veya dosya bulunamadı:", error);
+                });
+            } else {
+                ses.pause();
+                buton.textContent = "müzikçik";
+                buton.style.color = "#888";
+                buton.style.borderColor = "#333";
+            }
         }
         
         function acLightbox(indeks) {
@@ -110,7 +122,7 @@
         }
 
         function kapatLightbox(e) {
-            if (e === null || e.target.id === "galeri-lightbox") {
+            if (e === null || e.target.id === "galeri-lightbox" || e.target.className === "kapat-butonu") {
                 document.getElementById("galeri-lightbox").style.display = "none";
                 mevcutIndeks = -1;
             }
@@ -118,21 +130,18 @@
 
         // Klavye Tuşlarını Dinleyen Fonksiyon (ESC, Sağ ve Sol Ok Tuşları)
         document.addEventListener("keydown", function(event) {
-            if (mevcutIndeks === -1) return; // Eğer büyük ekran açık değilse çalışma
+            if (mevcutIndeks === -1) return;
 
             if (event.key === "Escape") {
                 kapatLightbox(null);
             } else if (event.key === "ArrowRight") {
-                // Sağ oka basınca sonraki resme geç
                 mevcutIndeks = (mevcutIndeks + 1) % fotograflar.length;
                 document.getElementById("lightbox-img").src = fotograflar[mevcutIndeks];
             } else if (event.key === "ArrowLeft") {
-                // Sol oka basınca önceki resme geç
                 mevcutIndeks = (mevcutIndeks - 1 + fotograflar.length) % fotograflar.length;
                 document.getElementById("lightbox-img").src = fotograflar[mevcutIndeks];
             }
         });
     </script>
-
 </body>
 </html>
